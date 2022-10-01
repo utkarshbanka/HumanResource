@@ -1,0 +1,75 @@
+About Employee Tables Structure;
+==============================================================================
+This is The EMployee Table WHere Empid is Primaray Key Becouse Primary key not accept duplicate value thats why access of data is faster and Email is also unqiue to prevent the data error becouse if 2 emloyee have same email then three is chance to 
+Employee Get Unwated Result that's why email coloumn is unique And We need to Create this table to Many to many Relationship
+=========================================================================
+mysql> desc employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| empid    | int         | NO   | PRI | NULL    |       |
+| name     | varchar(30) | YES  |     | NULL    |       |
+| gender   | varchar(10) | YES  |     | NULL    |       |
+| address  | varchar(30) | YES  |     | NULL    |       |
+| password | varchar(30) | YES  |     | NULL    |       |
+| email    | varchar(30) | YES  | UNI | NULL    |       |
+| mobile   | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+========================================================================================
+About Department Tables;
+======================================================================
+This is Department Table in this did or Department id is primary key becouse There is no chance To have 2 Department having same Department id and 2 nd coloum have department name;
+=============================================================================
+mysql> desc department;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| did        | int         | NO   | PRI | NULL    |       |
+| department | varchar(30) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+=====================================================================================
+About Refrences Table That Make Employee  and Department Table To Many to Many Relationship
+==============================================================================
+This table have foriegn key of empid and Deprtment id 
+=========================================================================
+mysql> desc emplodep;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| empid | int  | YES  | MUL | NULL    |       |
+| did   | int  | YES  | MUL | NULL    |       |
++-------+------+------+-----+---------+-------+
+======================================================================================
+About Leave Table 
+============================
+This table have Leave Data When Employee Requested for leave then this Table get the data form the employee when they want
+to leave In this Table Datastore is Empid and Current Date When employee Requested for leave to check the admin when employee requested for leave and Date of leave when Employee want to Take Leave And There is Reason column option Becouse 
+employee give the reason for leave 
+================================================================================
+mysql> desc leavere;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| empid   | int          | YES  |     | NULL    |       |
+| current | date         | YES  |     | NULL    |       |
+| till    | date         | YES  |     | NULL    |       |
+| reason  | varchar(100) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+==================================================================================
+About Approve Table
+===============================
+When Admin Approve the Leave of Employee Then Employee Data inserted in to Approve Table and Request or Leavere
+Data Aotomatic Dellete from the table and if Admin Decline the Leave Then Data for Leavere Table is Deleted But not added in to 
+the approve table;
+==========================================================================
+mysql> desc approve;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| empid   | int          | YES  |     | NULL    |       |
+| current | date         | YES  |     | NULL    |       |
+| till    | date         | YES  |     | NULL    |       |
+| reason  | varchar(100) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+
+
